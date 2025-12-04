@@ -1,5 +1,5 @@
 # Priority Split File Transfer Scaffolding Project
-A program that has 2 appraoches to sending over information from a user to a server through HTTP Post Requests using Apache Jmeter
+A program that has 2 approaches to sending over information from a user to a server through HTTP Post Requests using Apache Jmeter
 
 
 ## Run Instructions
