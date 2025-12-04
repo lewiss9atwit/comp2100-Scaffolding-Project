@@ -21,16 +21,16 @@ public class myApproach {
 
 	public static void main(String[] args) throws Exception {
 
-		// Load JMeter properties
+		// Load JMeter properties replace with path to your jmeter.properties
 		JMeterUtils.loadJMeterProperties("C:/Users/samso/OneDrive/Documents/apache-jmeter-5.6.3/bin/jmeter.properties");
 		JMeterUtils.initLocale();
 		StandardJMeterEngine jmeter = new StandardJMeterEngine();
 		Scanner input = new Scanner(System.in);
-		System.out.println("Type the Ip address of your python upload server");
+		System.out.println("Type the Ip address of your server");
 		String serverIp = input.nextLine();
 		System.out.println("How many requests total");
 		int threadNum = input.nextInt();
-		System.out.println("How long do you wnat this to take ideally in seconds");
+		System.out.println("How long do you want this to take in seconds");
 		int rampUpTime = input.nextInt();
 		input.close();
 		
@@ -59,8 +59,8 @@ public class myApproach {
 		http.setConnectTimeout("30000"); 
 		http.setResponseTimeout("30000");
 
-		// Add the file (correct way)
-		String filePath = "C:/Users/samso/OneDrive/Desktop/Network Programming/Scaffolding/Files to Send/Priority.json";
+		// Add the file put the file path to your Priority.json file
+		String filePath = "Files/Priority.json";
 		HTTPFileArg file = new HTTPFileArg(filePath, "files", "application/json");
 		http.setHTTPFiles(new HTTPFileArg[]{file});
 
@@ -96,7 +96,7 @@ public class myApproach {
 		remainData.setResponseTimeout("30000");
 
 		// Add the file
-		String remFilePath = "C:/Users/samso/OneDrive/Desktop/Network Programming/Scaffolding/Files to Send/Remaining.json";
+		String remFilePath = "Files/Remaining.json";
 		HTTPFileArg remFile = new HTTPFileArg(remFilePath, "files", "application/json");
 		remainData.setHTTPFiles(new HTTPFileArg[]{remFile});
 		
@@ -125,6 +125,8 @@ public class myApproach {
 		
 		group.add(summaryCollector);
 		group.add(treeCollector);
+		
+		System.out.println("Sending your requests to the server with the IP " + serverIp + " on port 8000 now");
 
 		// Run Test
 		jmeter.configure(testPlanTree);

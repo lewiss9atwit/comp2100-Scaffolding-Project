@@ -20,18 +20,18 @@ public class commonApproach {
 
 	public static void main(String[] args) throws Exception {
 
-		// Load JMeter properties
+		// Load JMeter properties replace with path to your jmeter.properties
 		JMeterUtils.loadJMeterProperties("C:/Users/samso/OneDrive/Documents/apache-jmeter-5.6.3/bin/jmeter.properties");
 		JMeterUtils.initLocale();
 
 		StandardJMeterEngine jmeter = new StandardJMeterEngine();
 
 		Scanner input = new Scanner(System.in);
-		System.out.println("Type the Ip address of your python upload server");
+		System.out.println("Type the Ip address of your server");
 		String serverIp = input.nextLine();
 		System.out.println("How many requests total");
 		int threadNum = input.nextInt();
-		System.out.println("How long do you wnat this to take ideally in seconds");
+		System.out.println("How long do you want this to take in seconds");
 		int rampUpTime = input.nextInt();
 		input.close();
 		
@@ -60,7 +60,7 @@ public class commonApproach {
 		http.setResponseTimeout("30000");
 
 		// Add the file (correct way)
-		String filePath = "C:/Users/samso/OneDrive/Desktop/Network Programming/Scaffolding/Files to Send/Entire File.json";
+		String filePath = "Files/Entire File.json";
 		HTTPFileArg file = new HTTPFileArg(filePath, "files", "application/json");
 		http.setHTTPFiles(new HTTPFileArg[]{file});
 
@@ -100,6 +100,8 @@ public class commonApproach {
 		samplerTree.add(summaryCollector);
 		samplerTree.add(treeCollector);
 
+		
+		System.out.println("Sending your requests to the server with the IP " + serverIp + " on port 8000 now");
 		// Run Test
 		jmeter.configure(testPlanTree);
 		jmeter.run();
