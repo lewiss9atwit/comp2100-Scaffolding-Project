@@ -33,7 +33,7 @@ public class myApproach {
 		System.out.println("How long do you want this to take in seconds");
 		int rampUpTime = input.nextInt();
 		input.close();
-		
+		//Test 
 		System.out.println("Warning with my appraoch it sends 2 files one after another per each user so you will get double the amount of requests in your results.");
 		// Loop Controller
 		LoopController loop = new LoopController();
